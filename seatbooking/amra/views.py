@@ -1,19 +1,35 @@
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
+import pytz
+from django.utils import timezone
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 
-from .models import Theatre
+from .models import Theatre, Timing, Movie
 
 
 def index(request):
-    all_halls = Theatre.objects.all()
-    output = ', '.join([thtr.name for thtr in all_halls])
-    return HttpResponse(output)
+    theatres = Theatre.objects.all()
+    context = {'theatres': theatres}
+    return render(request, 'amra/index.html', context)
 
 
-def detail(request, theatre_id):
-    thtr = Theatre.objects.get(pk=1)
-    return HttpResponse(thtr)
+def details(request, timing_id):
+    timing = get_object_or_404(Timing, pk=timing_id)
+    movie = timing.movie
+    seats = timing.theatre.seats.all()
+    context = {
+        'movie': movie,
+        'seats': seats,
+        }
+    return render(request, 'amra/details.html', context)
 
 
 def movies(request, theatre_id):
-    response = "You're looking at the movies in theatre %s."
-    return HttpResponse(response % theatre_id)
+    current_time = timezone.now()
+    theatre = get_object_or_404(Theatre, pk=theatre_id)
+    timings = theatre.timings.filter(Q(show_time__gt=current_time))
+    context = {
+        'header': theatre.name,
+        'timings': timings,
+        }
+    return render(request, 'amra/movies.html', context)

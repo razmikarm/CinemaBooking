@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ԱՄՐԱգրում</title>
+</head>
+<body>
+    <h1>{{ header }}</h1>
+    {% for time in timings %}
+    <div>
+        <img width="10%" src="{{ time.movie.poster_path }}">
+        <a href="{% url 'details' time.id %}">{{ time.movie }}</a>
+        <p>{{ time.show_time }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

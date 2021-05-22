@@ -20,24 +20,26 @@ class Theatre(models.Model):
 
 
 class Seat(models.Model):  # Can be implemented in Theatre as matrix
-    theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE)
-    row = models.TextField()
+    theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE, related_name='seats')
+    row = models.IntegerField()
     number = models.IntegerField()
 
     def __str__(self):
-        return f"{self.row}{self.number}"
+        return f"{self.row}|{self.number}"
 
 
 class Movie(models.Model):
     name = models.TextField()
     poster_path = models.TextField(null=True)
+    # duration
+    # price
 
     def __str__(self):
         return self.name
 
 
 class Timing(models.Model):
-    theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE)
+    theatre = models.ForeignKey(Theatre, on_delete=models.CASCADE, related_name='timings')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     show_time = models.DateTimeField()  # Can create separate table, if times are fixed
 

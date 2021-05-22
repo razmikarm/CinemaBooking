@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ԱՄՐԱգրում</title>
+</head>
+<body>
+    <h1>{{ movie }}</h1>
+    <img width="10%" src="{{ movie.poster_path }}">
+    {% for seat in seats %}
+        <p>{{ seat }}</p>
+    {% endfor %}
+</body>
+</html>
