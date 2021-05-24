@@ -1,11 +1,5 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ԱՄՐԱգրում</title>
-</head>
-<body>
+{% extends "amra/base.html" %}
+{% block main %}
     <h1>Սրահներ</h1>
     {% if theatres %}
         <ul>
@@ -16,5 +10,4 @@
     {% else %}
         <p>Հասանելի սրահներ դեռ առկա չեն։</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

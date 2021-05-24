@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: FreeSerif;
+}
+a {
+    text-decoration: none;
+}
+header {
+    background-color: #08dccb;
+}
+header > a {
+    display: inline-block;
+    padding: 5px 50px;
+}
+header > a > img {
+    width: 40px;
+}
+h1 {
+    margin: 30px;
+}
+.container {
+    margin: 30px;
+    text-align: center;
+}
+ul {
+    list-style: none;
+}
+ul > li {
+    margin: 10px;
+}
+#log_button {
+    float: right;
+    padding: 5px 20px;
+}
+#log_button > span {
+
+}
+ul > li > a {
+    color: green;
+}
+.movie {
+    color: green;
+    display: inline-block;
+    width: 15%;
+}
+.movie > a {
+    color: green;
+}
+.movie > a > img {
+    width: 100%;
+}
+#sign_alter {
+    font-size: 13px;
+    color: green;
+}
+#submit {
+    padding: 3px;
+    font-size: 17px;
+}
+.sign_error {
+    color: darkred;
+    font-size: 13px;
+}

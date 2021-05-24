@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="favicon" href="{% static 'favicon.ico' %}">
+    <title>ԱՄՐԱգրում - {% block title %}Գլխավոր{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <a href="/" id="home"><img src="{% static 'logo.png' %}" title="Home" alt="Home"></a>
+        {% if user.is_authenticated %}
+            <a href="/account/logout/" id="log_button">
+                <span>{{user.get_username}}</span>
+                <img src="{% static 'logout.png' %}" title="Log out" alt="Logout">
+            </a>
+        {% else %}
+            <a href="/account/login/" id="log_button"><img src="{% static 'login.png' %}" title="Log in" alt="Login"></a>
+        {% endif %}
+    </header>
+    <div class="container">
+        {% block main %} {% endblock %}
+    </div>
+</body>
+</html>

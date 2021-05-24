@@ -1,0 +1,14 @@
+{% extends "accounts/base.html" %}
+{% block main %}
+    {% for field in form %}
+        {{ field.label_tag }}
+        <br>{{ field }}<br>
+        {% for error in field.errors %}
+            <span class="sign_error">{{error}}</span>
+        {% endfor %}
+        <br>
+    {% endfor %}
+{% endblock %}
+{% block button_text %}Login{% endblock %}
+{% block alter_text %}Sign Up{% endblock %}
+{% block alter_link %}register{% endblock %}

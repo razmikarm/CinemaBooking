@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ԱՄՐԱգրում</title>
-</head>
-<body>
-    <h1>{{ movie }}</h1>
-    <img width="10%" src="{{ movie.poster_path }}">
-    {% for seat in seats %}
-        <p>{{ seat }}</p>
+{% extends "amra/base.html" %}
+{% block title %}{{ timing.movie }}{% endblock %}
+{% block main %}
+    <h1>{{ timing.movie }}</h1>
+
+    <img width="10%" src="{{ timing.movie.poster_path }}">
+    <div style="text-align: center">
+    {% for row in seats %}
+        {% with row_number=forloop.counter %}
+            <br>
+            {% for seat in row %}
+                {% if seat %}
+                    <span style="display: inline-block; color: red; margin: 50px">{{ row_number }}|{{ forloop.counter }}</span>
+                {% else %}
+                    <a href="{% url 'book' timing.id row_number forloop.counter %}" style="display: inline-block; margin: 50px">{{ row_number }}|{{ forloop.counter }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
     {% endfor %}
-</body>
-</html>
+    </div>
+{% endblock %}

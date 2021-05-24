@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="favicon" href="{% static 'favicon.ico' %}">
+    <title>ԱՄՐԱգրում - {% block title %}Գլխավոր{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <a href="/" id="home"><img src="{% static 'logo.png' %}" title="Home" alt="Home"></a>
+    </header>
+    <div class="container">
+      <form method="POST" charset="UTF-8">
+            {% csrf_token %}
+            {% block main %} {% endblock %}
+            <input id="submit" type="Submit" value="{% block button_text %}{% endblock %}"> or <a href="/account/{% block alter_link %}{% endblock %}/" id="sign_alter">{% block alter_text %}{% endblock %}</a>
+      </form>
+    </div>
+</body>
+</html>
